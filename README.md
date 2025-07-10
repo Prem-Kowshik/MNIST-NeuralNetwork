@@ -81,13 +81,12 @@ The mathematical relationship between softmax and cross-entropy creates elegant 
 
 ### MNIST Dataset
 
-The **Modified National Institute of Standards and Technology (MNIST)** dataset is the "Hello World" of machine learning[54][57]:
-
-- **Size**: 60,000 training images + 10,000 test images
-- **Format**: 28×28 pixel grayscale images
+The dataset was provided by DevSoc and is available at this link: https://drive.google.com/drive/folders/1Tbyf4x_rX8kyQtroqyIpGuaRAHUO5M8_?usp=sharing
+- **Size**: 42,000 training images + 28,000 test images
+- **Format**: csv files with 785 columns (label+ flattened 28X28 grayscale images of handwritten digits)- train.csv and 784 columns (flattened 28X28 grayscale images of handwritten digits)- test.csv
 - **Classes**: 10 digits (0-9)
 - **Preprocessing**: Normalized pixel values (0-1) and one-hot encoded labels
-- **Origin**: Created from handwritten digits by US Census Bureau employees and high school students[60]
+- **Origin**: Provided by DevSoc
 
 ### Data Pipeline
 
@@ -113,9 +112,12 @@ collections
 ### Installation & Usage
 
 1. **Clone or download** the neural network script
-2. **Prepare your data**: Ensure `train.csv` and `test.csv` are in the same directory
+2. **Prepare your data**: Ensure `train.csv` and `test.csv` are in the same directory (you can download them from the drive link: https://drive.google.com/drive/folders/1Tbyf4x_rX8kyQtroqyIpGuaRAHUO5M8_?usp=sharing)
 3. **Run the program**:
    ```bash
+   python mnist_neural_network.py
+   ```
+   ```command prompt
    python mnist_neural_network.py
    ```
 
@@ -146,7 +148,7 @@ Output Layer: 10 neurons (Softmax)
 
 ### Forward Propagation
 
-1. **Input Processing**: Flatten 28×28 images to 784-dimensional vectors
+1. **Input Processing**: Read and process the data from the csv files
 2. **Hidden Layer Processing**: Apply linear transformation followed by ReLU activation
 3. **Output Generation**: Final linear layer followed by softmax for probability distribution
 
@@ -197,8 +199,8 @@ with open('trained_model.pkl', 'rb') as f:
 
 With proper configuration, you should expect:
 
-- **Training Accuracy**: 95%+ after 100 epochs
-- **Validation Accuracy**: 92%+ (depends on architecture)
+- **Training Accuracy**: 100%+ after 100 epochs
+- **Validation Accuracy**: 97%+ (depends on architecture)
 - **Convergence**: Steady improvement in first 20-30 epochs
 - **Overfitting Signs**: Gap between training and validation metrics
 
@@ -214,34 +216,11 @@ With proper configuration, you should expect:
 - Modify epochs for longer/shorter training
 - Implement learning rate scheduling
 
-### Advanced Features
-- Add dropout for regularization
-- Implement different initialization schemes
-- Experiment with other optimizers (momentum, Adam)
-
-## 🤝 Contributing
-
-This implementation serves as an educational tool. Potential improvements:
-
-- [ ] Add regularization techniques (L1/L2, dropout)
-- [ ] Implement other optimizers (momentum, Adam)
-- [ ] Add support for different activation functions
-- [ ] Include data augmentation capabilities
-- [ ] Add early stopping functionality
 
 ## 📚 Learning Resources
 
 To understand the concepts better:
 
-1. **Neural Networks**: "Deep Learning" by Ian Goodfellow, Yoshua Bengio, and Aaron Courville
-2. **MNIST Tutorials**: Explore variations with different frameworks (TensorFlow, PyTorch)
-3. **Mathematical Foundations**: Linear algebra and calculus for machine learning
-4. **Practical Tips**: Experiment with hyperparameters and observe their effects
-
-## 🏷️ License
-
-This educational implementation is provided as-is for learning purposes. Feel free to modify and experiment!
-
----
-
-**Note**: This implementation prioritizes clarity and educational value over performance optimization. For production use, consider established frameworks like TensorFlow or PyTorch that include optimized implementations and additional features.
+1. DevSoc Resources
+2. sentdex Youtube channel
+3. Andrej Karpathy Youtube channel
