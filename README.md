@@ -224,4 +224,4 @@ To understand the concepts better:
 1. DevSoc Resources
 2. sentdex Youtube channel
 3. Andrej Karpathy Youtube channel
-4. Perplexity and Claude (For error handling and variable names)
+4. Perplexity and Claude (For error handling and variable names, and for generating the README.md format)
