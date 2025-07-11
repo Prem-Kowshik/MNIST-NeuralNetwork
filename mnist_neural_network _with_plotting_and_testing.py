@@ -6,21 +6,6 @@ from collections import defaultdict
 import pickle
 import os
 
-"""This following code is for training a neural network to classify MNIST digits.
-It includes functions for loading data, preprocessing, training the model, evaluating performance, and visualizing results.
-The neural network consists of an input layer, multiple hidden layers with ReLU activation, and an output layer with softmax activation.
-It also includes functions for plotting training history and visualizing predictions.
-
-The naming convention for the model is as follows:
-X: Input dataset
-y: Output dataset
-X_train: Training data
-y_train: Training labels
-X_val: Validation data
-y_val: Validation labels
-
-For other variable names as well, I have tried to use variable use standardly used in the machine learning and neural network's community
-"""
 
 class NeuralNetwork:
     def __init__(self, input_size=784, hidden_sizes=[128, 64], output_size=10, learning_rate=0.01):
