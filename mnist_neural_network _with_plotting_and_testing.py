@@ -36,7 +36,8 @@ class NeuralNetwork:
     
     def softmax(self, x):
         exp_x = np.exp(x - np.max(x, axis=1, keepdims=True))
-        return exp_x / np.sum(exp_x, axis=1, keepdims=True)
+        output=exp_x/np.sum(exp_x, axis=1, keepdims=True)
+        return output
     
     def forward_propagation(self, X):
         activations = [X]
