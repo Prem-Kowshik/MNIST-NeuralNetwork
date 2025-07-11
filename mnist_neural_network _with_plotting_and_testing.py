@@ -227,53 +227,27 @@ def plot_training_history(model):
     plt.show()
 
 def visualize_predictions(X, y_true, y_pred, num_samples=10):
-    """
-    Visualize predictions from the neural network with dynamic grid sizing
-    
-    Parameters:
-    X: Input data (images)
-    y_true: True labels  
-    y_pred: Predicted labels
-    num_samples: Number of samples to visualize
-    """
     import numpy as np
     import matplotlib.pyplot as plt
-    
-    # Ensure num_samples doesn't exceed available data
     num_samples = min(num_samples, len(X))
-    
-    # Calculate grid dimensions dynamically
     if num_samples <= 10:
-        # For 10 or fewer samples, use a 2x5 layout
         rows, cols = 2, 5
     else:
-        # For more samples, calculate appropriate grid dimensions
         cols = int(np.ceil(np.sqrt(num_samples)))
         rows = int(np.ceil(num_samples / cols))
-    
-    # Create the figure and axes
     fig, axes = plt.subplots(rows, cols, figsize=(cols * 2.5, rows * 2.5))
-    
-    # Handle single subplot case
     if rows * cols == 1:
         axes = [axes]
     else:
         axes = axes.ravel()
-    
-    # Randomly select indices for visualization
     indices = np.random.choice(len(X), num_samples, replace=False)
-    
-    # Plot each sample
     for i, idx in enumerate(indices):
         image = X[idx].reshape(28, 28)
         axes[i].imshow(image, cmap='gray')
         axes[i].set_title(f'True: {y_true[idx]}, Pred: {y_pred[idx]}', fontsize=10)
         axes[i].axis('off')
-    
-    # Hide any unused subplots
     for i in range(num_samples, len(axes)):
         axes[i].axis('off')
-    
     plt.tight_layout()
     plt.show()
 
