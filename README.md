@@ -4,7 +4,7 @@ A comprehensive implementation of a feedforward neural network for handwritten d
 
 ## 🎯 Project Overview
 
-This project implements a multi-layer neural network from scratch to classify handwritten digits (0-9) from the famous MNIST dataset. The implementation includes training, validation, testing, and visualization capabilities, making it an excellent learning resource for understanding the fundamentals of neural networks.
+This project implements a multi-layer neural network from scratch to classify handwritten digits (0-9) from the given dataset. The implementation includes training, validation, testing, and visualization capabilities, making it an excellent learning resource for understanding the fundamentals of neural networks.
 
 ### Key Features
 
@@ -35,11 +35,11 @@ Input Layer (784 neurons) → Hidden Layers (customizable) → Output Layer (10 
 
 We use **Rectified Linear Unit (ReLU)** for hidden layers because:
 
-1. **Vanishing Gradient Solution**: Unlike sigmoid or tanh functions, ReLU maintains gradients for positive inputs, preventing the vanishing gradient problem that plagues deep networks[2][3]
+1. **Vanishing Gradient Solution**: Unlike sigmoid or tanh functions, ReLU maintains gradients for positive inputs, preventing the vanishing gradient problem that plagues deep networks
 
-2. **Computational Efficiency**: ReLU is extremely simple to compute (`f(x) = max(0, x)`) compared to exponential functions like sigmoid, making training significantly faster[4][6]
+2. **Computational Efficiency**: ReLU is extremely simple to compute (`f(x) = max(0, x)`) compared to exponential functions like sigmoid, making training significantly faster
 
-3. **Sparse Activation**: ReLU naturally creates sparse representations by setting negative values to zero, which can improve model efficiency and reduce overfitting[9][11]
+3. **Sparse Activation**: ReLU naturally creates sparse representations by setting negative values to zero, which can improve model efficiency and reduce overfitting
 
 4. **Better Convergence**: Networks with ReLU typically converge faster during training compared to traditional activation functions[4][7]
 
@@ -49,13 +49,13 @@ The mathematical simplicity of ReLU's derivative (either 0 or 1) makes backpropa
 
 The output layer uses **softmax activation** for several critical reasons:
 
-1. **Probability Distribution**: Softmax converts raw output scores (logits) into a valid probability distribution where all outputs sum to 1, making them interpretable as class probabilities[20][23]
+1. **Probability Distribution**: Softmax converts raw output scores (logits) into a valid probability distribution where all outputs sum to 1, making them interpretable as class probabilities
 
-2. **Multi-class Classification**: Unlike sigmoid (binary), softmax naturally handles multiple classes by computing relative probabilities across all possible outcomes[21][26]
+2. **Multi-class Classification**: Unlike sigmoid (binary), softmax naturally handles multiple classes by computing relative probabilities across all possible outcomes
 
-3. **Mathematical Stability**: The softmax function handles both positive and negative inputs gracefully, unlike simple normalization which fails when the sum of logits is zero[21]
+3. **Mathematical Stability**: The softmax function handles both positive and negative inputs gracefully, unlike simple normalization which fails when the sum of logits is zero
 
-4. **Amplified Differences**: Softmax emphasizes differences between logits through exponentiation, making the model more confident in its predictions[21][24]
+4. **Amplified Differences**: Softmax emphasizes differences between logits through exponentiation, making the model more confident in its predictions
 
 The softmax function is mathematically defined as:
 ```
@@ -67,13 +67,13 @@ where K is the number of classes.
 
 We use **cross-entropy loss** as our optimization objective because:
 
-1. **Probabilistic Foundation**: Cross-entropy naturally measures the difference between the true probability distribution (one-hot encoded labels) and predicted probabilities[37][40]
+1. **Probabilistic Foundation**: Cross-entropy naturally measures the difference between the true probability distribution (one-hot encoded labels) and predicted probabilities
 
-2. **Gradient Properties**: When combined with softmax, cross-entropy provides clean, stable gradients for backpropagation, leading to efficient optimization[21][22]
+2. **Gradient Properties**: When combined with softmax, cross-entropy provides clean, stable gradients for backpropagation, leading to efficient optimization
 
-3. **Classification Optimization**: Cross-entropy is specifically designed for classification tasks and penalizes wrong predictions more heavily than being "close but not perfect"[39][45]
+3. **Classification Optimization**: Cross-entropy is specifically designed for classification tasks and penalizes wrong predictions more heavily than being "close but not perfect"
 
-4. **Information Theory**: It measures the average number of bits needed to encode the true distribution using the predicted distribution, providing a principled approach to model evaluation[43][50]
+4. **Information Theory**: It measures the average number of bits needed to encode the true distribution using the predicted distribution, providing a principled approach to model evaluation
 
 The mathematical relationship between softmax and cross-entropy creates elegant gradients that simplify to `predicted_probability - true_label`, making optimization very efficient.
 
@@ -224,3 +224,4 @@ To understand the concepts better:
 1. DevSoc Resources
 2. sentdex Youtube channel
 3. Andrej Karpathy Youtube channel
+4. Perplexity and Claude (For error handling and variable names)
