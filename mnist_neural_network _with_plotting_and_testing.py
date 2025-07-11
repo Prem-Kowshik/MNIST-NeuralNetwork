@@ -6,6 +6,14 @@ from collections import defaultdict
 import pickle
 import os
 
+# Note to whover is reading this code:
+# This is a simple implementation of a feedforward neural network with ReLU activation for hidden layers
+# and softmax activation for the output layer. It includes methods for training, evaluating, and
+# predicting with the model. The code also includes functions for loading data, preprocessing it,
+# splitting it into training and validation sets, and visualizing predictions.
+# The code uses standard naming conventions to make it easier to evaluate and so that everyone can understand it (Thanks sentdex)
+# Also note that all previous outputs will be wiped out when this code is run.
+# Also, the error handling for inputs is minimall for now, so please try not to break the code by entering invalid inputs.
 
 class NeuralNetwork:
     def __init__(self, input_size=784, hidden_sizes=[128, 64], output_size=10, learning_rate=0.01):
@@ -90,31 +98,21 @@ class NeuralNetwork:
             indices = np.random.permutation(n_samples)
             X_train_shuffled = X_train[indices]
             y_train_shuffled = y_train[indices]
-            for batch_idx in range(n_batches):
-                start_idx = batch_idx * batch_size
-                end_idx = min((batch_idx + 1) * batch_size, n_samples)
-                X_batch = X_train_shuffled[start_idx:end_idx]
-                y_batch = y_train_shuffled[start_idx:end_idx]
-                
-                # Forward propagation using RELU activation
+            for i in range(n_batches):
+                start = i * batch_size
+                end = min((i + 1) * batch_size, n_samples)
+                X_batch = X_train_shuffled[start:end]
+                y_batch = y_train_shuffled[start:end]
                 activations, z_values = self.forward_propagation(X_batch)
-                
-                # Calculating loss using cross-entropy
                 loss = self.cross_entropy_loss(y_batch, activations[-1])
                 epoch_loss += loss
-                
-                # Calculating accuracy
                 predictions = np.argmax(activations[-1], axis=1)
                 true_labels = np.argmax(y_batch, axis=1)
                 accuracy = np.mean(predictions == true_labels)
                 epoch_accuracy += accuracy
-                
-                # Backward propagation
                 weight_gradients, bias_gradients = self.backward_propagation(
                     X_batch, y_batch, activations, z_values
                 )
-                
-                # Updating parameters
                 self.update_parameters(weight_gradients, bias_gradients)
             
             avg_loss = epoch_loss / n_batches
@@ -155,7 +153,7 @@ def load_data(filename):
     data = []
     with open(filename, 'r') as file:
         reader = csv.reader(file)
-        header = next(reader) 
+        file_header = next(reader) 
         for row in reader:
             data.append([float(x) for x in row])
     return np.array(data)
@@ -213,8 +211,6 @@ def plot_training_history(model):
     plt.show()
 
 def visualize_predictions(X, y_true, y_pred, num_samples=10):
-    import numpy as np
-    import matplotlib.pyplot as plt
     num_samples = min(num_samples, len(X))
     if num_samples <= 10:
         rows, cols = 2, 5
@@ -384,6 +380,6 @@ def main():
         pickle.dump(model, f)                     
     print("\n Training completed successfully!")
     return model
-np.random.seed(42)
-random.seed(42)
+np.random.seed(29)
+random.seed(29)
 trained_model = main()
